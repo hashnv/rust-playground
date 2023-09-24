@@ -26,7 +26,7 @@ fn contains_punctuation(s: &str) -> Result<(), &'static str> {
     }
 }
 
-const PASSWORD_CHECKS: &'static [fn(&str) -> Result<(), &'static str>] = &[
+const PASSWORD_CHECKS: &[fn(&str) -> Result<(), &'static str>] = &[
     has_min_length_eight,
     contains_uppercase,
     contains_digit,
