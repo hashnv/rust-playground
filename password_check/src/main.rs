@@ -14,8 +14,18 @@ pub fn contains_punctuation(s: &str) -> bool {
     s.chars().any(|x| !x.is_alphanumeric())
 }
 
-pub fn is_valid_password(s: &str) -> bool {
-    has_min_length(s, 8) && contains_uppercase(s) && contains_digit(s) && contains_punctuation(s)
+pub fn valid_password(password: &str) -> Result<&str, &'static str> {
+    if !has_min_length(password, 8) {
+        return Err("Less than eight characters long.");
+    } else if !contains_uppercase(password) {
+        return Err("Does not contain an uppercase character.");
+    } else if !contains_digit(password) {
+        return Err("Does not contain a digit.");
+    } else if !contains_punctuation(password) {
+        return Err("Does not contain punctuation.");
+    } else {
+        return Ok(password)
+    }
 }
 
 #[cfg(test)]
@@ -76,8 +86,8 @@ fn main() {
         .read_line(&mut passwd)
         .expect("Unable to read from stdin");
 
-    match is_valid_password(&passwd) {
-        true => println!("Your password is valid."),
-        false => println!("Your password is NOT valid."),
+    match valid_password(&passwd) {
+        Ok(_) => eprintln!("That is a valid password! :)"),
+        Err(e) => eprintln!("InvalidPasswordError: '{}'", e)
     }
 }
