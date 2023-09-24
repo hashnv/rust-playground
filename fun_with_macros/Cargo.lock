@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "ownership"
+name = "fun_with_macros"
 version = "0.1.0"
