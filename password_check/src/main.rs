@@ -16,15 +16,15 @@ pub fn contains_punctuation(s: &str) -> bool {
 
 pub fn valid_password(password: &str) -> Result<&str, &'static str> {
     if !has_min_length(password, 8) {
-        return Err("Less than eight characters long.");
+        Err("Less than eight characters long.")
     } else if !contains_uppercase(password) {
-        return Err("Does not contain an uppercase character.");
+        Err("Does not contain an uppercase character.")
     } else if !contains_digit(password) {
-        return Err("Does not contain a digit.");
+        Err("Does not contain a digit.")
     } else if !contains_punctuation(password) {
-        return Err("Does not contain punctuation.");
+        Err("Does not contain punctuation.")
     } else {
-        return Ok(password)
+        Ok(password)
     }
 }
 
