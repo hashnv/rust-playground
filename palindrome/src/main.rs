@@ -6,8 +6,9 @@ pub fn sanitize(s: &String) -> String {
 }
 
 pub fn is_palindrome(s: &String) -> bool {
+    let s = sanitize(s);
     let reversed_s = s.chars().rev().collect::<String>();
-    return sanitize(s) == sanitize(&reversed_s);
+    return s == reversed_s;
 }
 
 #[cfg(test)]
@@ -16,7 +17,7 @@ mod tests {
 
     #[test]
     fn test_is_palindrome_easy() {
-        assert!(is_palindrome(&String::from("racecar")))
+        assert!(is_palindrome(&String::from("toot")))
     }
 
     #[test]
@@ -33,6 +34,7 @@ mod tests {
     fn test_is_palindrome_failure() {
         assert!(!is_palindrome(&String::from("racingcar")))
     }
+
 }
 
 fn main() {
