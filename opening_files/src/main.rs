@@ -1,21 +1,32 @@
-use std::fs::File;
+use std::fs::read_to_string;
 use std::path::Path;
+use std::process::ExitCode;
 
-fn main() {
+fn main() -> ExitCode {
+    let mut exit_code = ExitCode::from(0);
     let argv: Vec<String> = std::env::args().collect();
-    let argc = argv.len();
 
-    if argc < 2 {
-        panic!("Missing arg");
+    let mut paths: Vec<_> = Vec::new();
+    for i in argv[1..].iter() {
+        paths.push(Path::new(i));
     }
 
-    let path = Path::new(&argv[1]);
-    
-    // let f = match File::open(&path) {
-    match File::open(&path) {
-        Ok(f) => f,
-        Err(e) => panic!("Could not open {}: {}", path.display(), e),
-    };
+    let mut error_count: usize = 0;
+    for i in paths {
+        let contents = read_to_string(i);
 
-    println!("Loaded file: '{}'", path.display());
+        if contents.is_ok() {
+            print!("{}", contents.unwrap())
+        } else {
+            error_count += 1;
+        }
+    }
+ 
+    if error_count > 0 {
+        exit_code = ExitCode::from(1);
+    }
+
+    eprintln!("Finished with {} error(s).", error_count);
+
+    ExitCode::from(exit_code)
 }
