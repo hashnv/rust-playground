@@ -1,4 +1,4 @@
-use std::process;
+use std::process::exit;
 
 fn main() {
     let argv: Vec<String> = std::env::args().collect();
@@ -6,7 +6,7 @@ fn main() {
 
     if argc < 3 {
         eprintln!("Not enough args supplied!");
-        process::exit(1);
+        exit(1);
     }
 
     let (numbers, _errors): (Vec<_>, Vec<_>) = argv[1..]

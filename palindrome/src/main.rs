@@ -1,4 +1,4 @@
-use std::process;
+use std::process::exit;
 
 pub fn sanitize(s: &str) -> String {
     let alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -45,7 +45,7 @@ fn main() {
 
     if argc < 2 {
         eprintln!("Not enough args supplied!");
-        process::exit(1);
+        exit(1);
     }
 
     let strings = &argv[1..];
