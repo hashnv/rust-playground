@@ -88,6 +88,6 @@ fn main() {
 
     match valid_password(&passwd) {
         Ok(_) => eprintln!("That is a valid password! :)"),
-        Err(e) => eprintln!("InvalidPasswordError: '{}'", e)
+        Err(e) => eprintln!("InvalidPasswordError: '{}'", e),
     }
 }
