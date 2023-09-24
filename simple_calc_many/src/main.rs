@@ -10,7 +10,7 @@ fn main() {
     }
 
     let (numbers, _errors): (Vec<_>, Vec<_>) = argv[1..]
-        .into_iter()
+        .iter()
         .map(|s| s.parse::<i32>())
         .partition(Result::is_ok);
 
