@@ -33,15 +33,6 @@ const PASSWORD_CHECKS: &'static [fn(&str) -> Result<(), &'static str>] = &[
     contains_punctuation,
 ];
 
-fn evaluate_password_checks(password: &str) -> Vec<Result<(), &'static str>> {
-    let mut results: [Result<(), &str>; PASSWORD_CHECKS.len()] = [Ok(()); PASSWORD_CHECKS.len()];
-    for (i, check) in PASSWORD_CHECKS.iter().enumerate() {
-        let result = check(password);
-        results[i] = result;
-    }
-    results.into_iter().collect()
-}
-
 pub fn valid_password(password: &str) -> Result<(), Vec<&str>> {
     let mut results = Vec::new();
     for ele in PASSWORD_CHECKS {
