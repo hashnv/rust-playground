@@ -1,4 +1,4 @@
-use std::process;
+use std::process::exit;
 
 pub fn has_double(s: &str) -> bool {
     let s = s.to_lowercase();
@@ -37,7 +37,7 @@ fn main() {
 
     if argc < 2 {
         eprintln!("Not enough args supplied!");
-        process::exit(1);
+        exit(1);
     }
 
     let s = &argv[1];
