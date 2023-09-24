@@ -1,11 +1,11 @@
 use std::process;
 
-pub fn sanitize(s: &String) -> String {
+pub fn sanitize(s: &str) -> String {
     let alphabet = "abcdefghijklmnopqrstuvwxyz";
     s.to_lowercase().chars().filter(|c| alphabet.contains(*c)).collect()
 }
 
-pub fn is_palindrome(s: &String) -> bool {
+pub fn is_palindrome(s: &str) -> bool {
     let s = sanitize(s);
     let reversed_s = s.chars().rev().collect::<String>();
     s == reversed_s
