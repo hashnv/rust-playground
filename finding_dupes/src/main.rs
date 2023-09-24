@@ -19,15 +19,15 @@ where
     T: std::cmp::PartialEq + Clone,
 {
     let mut temp: Vec<T> = Vec::new();
-    let mut dupes: u64 = 0;
+    let mut dupe_count: u64 = 0;
     for obj in vect {
         if !temp.contains(&obj) {
             temp.push(obj);
         } else {
-            dupes += 1;
+            dupe_count += 1;
         }
     }
-    dupes
+    dupe_count
 }
 
 fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>
