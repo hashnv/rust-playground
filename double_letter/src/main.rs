@@ -3,8 +3,9 @@ use std::process;
 pub fn has_double(s: &str) -> bool {
     let s = s.to_lowercase();
     let words = s.split(' ');
+    let mut previous_char;
     for word in words {
-        let mut previous_char = ' ';
+        previous_char = ' ';
         for char in word.chars() {
             if char == previous_char {
                 return true
