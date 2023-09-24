@@ -1,5 +1,7 @@
 use std::fmt;
 
+// uncomment to automatically add Debug trait
+// #[derive(Debug)]
 struct Pet {
     name: String,
     age: u8,
@@ -16,6 +18,7 @@ impl Pet {
     }
 }
 
+// customized debug trait
 impl fmt::Debug for Pet {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}, age {}, ${}", self.name, self.age, self.last_bill)
@@ -24,6 +27,5 @@ impl fmt::Debug for Pet {
 
 fn main() {
     let pet1 = Pet::new("bob", 18, 123);
-
     println!("{:?}", pet1)
 }
