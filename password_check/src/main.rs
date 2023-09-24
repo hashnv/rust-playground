@@ -3,15 +3,15 @@ pub fn has_min_length(s: &str, min_length: usize) -> bool {
 }
 
 pub fn contains_uppercase(s: &str) -> bool {
-    s.chars().find(|x| x.is_uppercase()).is_some()
+    s.chars().any(|x| x.is_uppercase())
 }
 
 pub fn contains_digit(s: &str) -> bool {
-    s.chars().find(|x| x.is_digit(10)).is_some()
+    s.chars().any(|x| x.is_ascii_digit())
 }
 
 pub fn contains_punctuation(s: &str) -> bool {
-    s.chars().find(|x| !x.is_alphanumeric()).is_some()
+    s.chars().any(|x| !x.is_alphanumeric())
 }
 
 pub fn is_valid_password(s: &str) -> bool {
