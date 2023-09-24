@@ -17,22 +17,22 @@ mod tests {
 
     #[test]
     fn test_is_palindrome_easy() {
-        assert!(is_palindrome(&String::from("toot")))
+        assert!(is_palindrome("toot"))
     }
 
     #[test]
     fn test_is_palindrome_medium() {
-        assert!(is_palindrome(&String::from("A nut for a jar of tuna")))
+        assert!(is_palindrome("A nut for a jar of tuna"))
     }
 
     #[test]
     fn test_is_palindrome_hard() {
-        assert!(is_palindrome(&String::from("A man, a plan, a canal, Panama!")))
+        assert!(is_palindrome("A man, a plan, a canal, Panama!"))
     }
 
     #[test]
     fn test_is_palindrome_failure() {
-        assert!(!is_palindrome(&String::from("racingcar")))
+        assert!(!is_palindrome("racingcar"))
     }
 
 }
