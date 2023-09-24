@@ -1,8 +1,13 @@
 use std::process;
 
+pub fn sanitize(s: &String) -> String {
+    let alphabet = "abcdefghijklmnopqrstuvwxyz";
+    s.to_lowercase().chars().filter(|c| alphabet.contains(*c)).collect()
+}
+
 pub fn is_palindrome(s: &String) -> bool {
     let reversed_s = s.chars().rev().collect::<String>();
-    *s == reversed_s
+    return sanitize(s) == sanitize(&reversed_s);
 }
 
 #[cfg(test)]
@@ -26,7 +31,7 @@ mod tests {
 
     #[test]
     fn test_is_palindrome_failure() {
-        assert_eq!(is_palindrome(&String::from("racingcar")), false)
+        assert!(!is_palindrome(&String::from("racingcar")))
     }
 }
 
