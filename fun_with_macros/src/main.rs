@@ -5,17 +5,18 @@ macro_rules! currency {
 }
 
 macro_rules! dumper {
-    ($vect:expr) => {
+    ($($item:expr),*) => {
+        let temp_vec = vec!($($item),*);
         println!(
             "len={}, cap={}, cont={:?}",
-            ($vect as Vec<_>).len(),
-            ($vect as Vec<_>).capacity(),
-            ($vect as Vec<_>),
+            temp_vec.len(),
+            temp_vec.capacity(),
+            temp_vec,
         )
     };
 }
 
 fn main() {
     println!("You owe me {}", currency!(50));
-    dumper!(vec!(1,2,3));
+    dumper!(1,2,3,4,5,6,7,8);
 }
