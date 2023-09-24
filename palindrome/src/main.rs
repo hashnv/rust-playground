@@ -51,8 +51,8 @@ fn main() {
     for s in strings {
 
         match is_palindrome(s) {
-            true => println!("{} is a palindrome.", s),
-            _ => println!("{} is NOT a palindrome.", s),
+            true => println!("'{}' is a palindrome.", s),
+            _ => println!("'{}' is NOT a palindrome.", s),
         }
     }
 }
