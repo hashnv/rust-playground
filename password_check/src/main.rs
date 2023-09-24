@@ -40,7 +40,7 @@ pub fn valid_password(password: &str) -> Result<(), Vec<&str>> {
     }
     let errors: Vec<_> = results.into_iter().filter(Result::is_err).collect();
     let errors: Vec<_> = errors.into_iter().map(Result::unwrap_err).collect();
-    match errors.len() == 0 {
+    match errors.is_empty() {
         true => Ok(()),
         false => Err(errors),
     }
