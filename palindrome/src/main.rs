@@ -8,7 +8,7 @@ pub fn sanitize(s: &String) -> String {
 pub fn is_palindrome(s: &String) -> bool {
     let s = sanitize(s);
     let reversed_s = s.chars().rev().collect::<String>();
-    return s == reversed_s;
+    s == reversed_s
 }
 
 #[cfg(test)]
