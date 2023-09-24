@@ -1,8 +1,33 @@
 use std::process;
 
-fn is_palindrome(s: &String) -> bool {
+pub fn is_palindrome(s: &String) -> bool {
     let reversed_s = s.chars().rev().collect::<String>();
     *s == reversed_s
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_is_palindrome_easy() {
+        assert!(is_palindrome(&String::from("racecar")))
+    }
+
+    #[test]
+    fn test_is_palindrome_medium() {
+        assert!(is_palindrome(&String::from("A nut for a jar of tuna")))
+    }
+
+    #[test]
+    fn test_is_palindrome_hard() {
+        assert!(is_palindrome(&String::from("A man, a plan, a canal, Panama!")))
+    }
+
+    #[test]
+    fn test_is_palindrome_failure() {
+        assert_eq!(is_palindrome(&String::from("racingcar")), false)
+    }
 }
 
 fn main() {
