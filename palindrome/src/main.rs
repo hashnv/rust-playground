@@ -2,7 +2,10 @@ use std::process;
 
 pub fn sanitize(s: &str) -> String {
     let alphabet = "abcdefghijklmnopqrstuvwxyz";
-    s.to_lowercase().chars().filter(|c| alphabet.contains(*c)).collect()
+    s.to_lowercase()
+        .chars()
+        .filter(|c| alphabet.contains(*c))
+        .collect()
 }
 
 pub fn is_palindrome(s: &str) -> bool {
@@ -34,7 +37,6 @@ mod tests {
     fn test_is_palindrome_failure() {
         assert!(!is_palindrome("racingcar"))
     }
-
 }
 
 fn main() {
@@ -49,7 +51,6 @@ fn main() {
     let strings = &argv[1..];
 
     for s in strings {
-
         match is_palindrome(s) {
             true => println!("'{}' is a palindrome.", s),
             _ => println!("'{}' is NOT a palindrome.", s),
