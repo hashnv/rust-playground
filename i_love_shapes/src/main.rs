@@ -56,7 +56,7 @@ impl Area for Orthotope {
 
 macro_rules! orthotope {
     ($($n:expr),*) => {
-        Orthotope { dimensions:vec!($($n as f64),*) }
+        Orthotope { dimensions: vec!($($n as f64),*) }
     };
 }
 
