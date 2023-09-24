@@ -1,26 +1,26 @@
 fn has_min_length_eight(s: &str) -> Result<(), &'static str> {
-    match s.trim().chars().count() >= 8 {
+    match s.chars().count() >= 8 {
         true => Ok(()),
         false => Err("is fewer than eight characters long"),
     }
 }
 
 fn contains_uppercase(s: &str) -> Result<(), &'static str> {
-    match s.trim().chars().any(|x| x.is_uppercase()) {
+    match s.chars().any(|x| x.is_uppercase()) {
         true => Ok(()),
         false => Err("does not contain an uppercase character"),
     }
 }
 
 fn contains_digit(s: &str) -> Result<(), &'static str> {
-    match s.trim().chars().any(|x| x.is_ascii_digit()) {
+    match s.chars().any(|x| x.is_ascii_digit()) {
         true => Ok(()),
         false => Err("does not contain a digit"),
     }
 }
 
 fn contains_punctuation(s: &str) -> Result<(), &'static str> {
-    match s.trim().chars().any(|x| !x.is_alphanumeric()) {
+    match s.chars().any(|x| !x.is_alphanumeric()) {
         true => Ok(()),
         false => Err("does not contain punctuation"),
     }
@@ -36,7 +36,7 @@ const PASSWORD_CHECKS: &'static [fn(&str) -> Result<(), &'static str>] = &[
 pub fn valid_password(password: &str) -> Result<(), Vec<&str>> {
     let mut results = Vec::new();
     for ele in PASSWORD_CHECKS {
-        results.push(ele(password));
+        results.push(ele(password.trim()));
     }
     let errors: Vec<_> = results.into_iter().filter(Result::is_err).collect();
     let errors: Vec<_> = errors.into_iter().map(Result::unwrap_err).collect();
