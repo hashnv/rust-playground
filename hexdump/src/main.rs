@@ -17,7 +17,7 @@ fn replace_whitespace(s: &str) -> String {
 }
 
 fn main() -> io::Result<()> {
-    let file = File::open("random.bytes")?;
+    let file = File::open("foo.txt")?;
     let mut reader = BufReader::new(file);
     let mut buffer: HexDumpBuffer;
     let mut position: usize = 0;
