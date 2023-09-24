@@ -1,6 +1,6 @@
 fn modify_ext(old_file:&mut String) -> usize {
     old_file.push_str(".json");
-    return old_file.len();
+    old_file.len()
 }
 
 fn main() {
