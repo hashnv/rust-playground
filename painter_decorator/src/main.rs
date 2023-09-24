@@ -2,9 +2,7 @@ fn main() {
     let room_height_meters = 2.5;
     let wall_a_length_meters = 8.0;
     let wall_b_length_meters = 10.0;
-
     let paint_coverage_coefficient: f64 = 10.0;
-
     let paint_can_cost_gbp = 12.50;
     let paint_can_cost_eur = 14.80;
 
