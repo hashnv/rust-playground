@@ -16,5 +16,5 @@ fn main() {
 
     let num_sum: i32 = numbers.into_iter().map(Result::unwrap).sum();
 
-    println!("{:?}", num_sum);
+    println!("{}", num_sum);
 }
