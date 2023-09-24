@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "anagram"
+name = "double_letter"
 version = "0.1.0"
