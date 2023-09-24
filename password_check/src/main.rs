@@ -1,32 +1,35 @@
-fn has_min_length_eight(s: &str) -> Result<(), &'static str> {
+type PasswordCheckResult = Result<(), &'static str>;
+type PasswordCheck = fn(&str) -> PasswordCheckResult;
+
+fn has_min_length_eight(s: &str) -> PasswordCheckResult {
     match s.chars().count() >= 8 {
         true => Ok(()),
         false => Err("is fewer than eight characters long"),
     }
 }
 
-fn contains_uppercase(s: &str) -> Result<(), &'static str> {
+fn contains_uppercase(s: &str) -> PasswordCheckResult {
     match s.chars().any(|x| x.is_uppercase()) {
         true => Ok(()),
         false => Err("does not contain an uppercase character"),
     }
 }
 
-fn contains_digit(s: &str) -> Result<(), &'static str> {
+fn contains_digit(s: &str) -> PasswordCheckResult {
     match s.chars().any(|x| x.is_ascii_digit()) {
         true => Ok(()),
         false => Err("does not contain a digit"),
     }
 }
 
-fn contains_punctuation(s: &str) -> Result<(), &'static str> {
+fn contains_punctuation(s: &str) -> PasswordCheckResult {
     match s.chars().any(|x| !x.is_alphanumeric()) {
         true => Ok(()),
         false => Err("does not contain punctuation"),
     }
 }
 
-const PASSWORD_CHECKS: &[fn(&str) -> Result<(), &'static str>] = &[
+const PASSWORD_CHECKS: &[PasswordCheck] = &[
     has_min_length_eight,
     contains_uppercase,
     contains_digit,
@@ -107,7 +110,10 @@ fn main() {
     match valid_password(&passwd) {
         Ok(_) => eprintln!("That is a valid password! :)"),
         Err(e) => {
-            eprintln!("That password is invalid because it: \n - {}", e.join("\n - "))
+            eprintln!(
+                "That password is invalid because it: \n - {}",
+                e.join("\n - ")
+            )
         }
     }
 }
