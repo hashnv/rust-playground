@@ -8,7 +8,7 @@ pub fn has_double(s: &str) -> bool {
         previous_char = ' ';
         for char in word.chars() {
             if char == previous_char {
-                return true
+                return true;
             }
             previous_char = char;
         }
