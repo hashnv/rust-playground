@@ -18,19 +18,24 @@ fn replace_whitespace(s: &str) -> String {
 
 fn main() -> io::Result<()> {
     let file = File::open("foo.txt")?;
+
     let mut reader = BufReader::new(file);
-    let mut buffer: HexDumpBuffer;
+    let mut buffer: HexDumpBuffer = EMPTYBUFFER;
     let mut position: usize = 0;
-    loop {
-        buffer = EMPTYBUFFER; // zero out buffer
-        let bytes_read = reader.read(&mut buffer)?;
-        if bytes_read == 0 {
-            break;
-        }
-        let utf8_decoded = String::from_utf8_lossy(&buffer);
-        let no_whitespace = replace_whitespace(&utf8_decoded);
+    let mut utf8_decoded;
+    let mut no_whitespace;
+
+    let mut bytes_read = reader.read(&mut buffer)?;
+
+    while bytes_read > 0 {
+        utf8_decoded = String::from_utf8_lossy(&buffer);
+        no_whitespace = replace_whitespace(&utf8_decoded);
+        
         println!("{:08x} {:02x?} {}", position, buffer, no_whitespace);
+
         position += BUFFERSIZE;
+        buffer = EMPTYBUFFER; // zero out buffer
+        bytes_read = reader.read(&mut buffer)?;
     }
     Ok(())
 }
